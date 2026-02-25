@@ -10,8 +10,7 @@ type Message = {
 };
 
 export default function Home() {
-  const backendUrl =
-    process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://127.0.0.1:8000";
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL?.trim() ?? "";
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -79,7 +78,8 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${backendUrl}/api/chat`, {
+      const chatEndpoint = backendUrl ? `${backendUrl}/api/chat` : "/api/chat";
+      const response = await fetch(chatEndpoint, {
         method: "POST",
         body: form,
       });
@@ -126,9 +126,6 @@ export default function Home() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-zinc-400">
             OpenVINO Vision Chat
           </p>
-          <h1 className="mt-1 text-lg font-semibold text-zinc-100 md:text-xl">
-            Conversation
-          </h1>
         </header>
 
         <div className="flex-1 overflow-y-auto px-4 py-5 md:px-6">

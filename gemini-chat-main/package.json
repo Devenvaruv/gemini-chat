@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "next": "16.1.6",
+    "openvino-genai-node": "^2026.0.0",
+    "openvino-node": "^2026.0.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
